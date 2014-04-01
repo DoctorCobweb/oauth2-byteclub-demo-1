@@ -9,16 +9,8 @@
 #import <Foundation/Foundation.h>
 
 // OAuth Stuff
-extern NSString * const NationBuilderOAuthTokenKey;
-extern NSString * const NationBuilderOAuthTokenKeySecret;
-extern NSString * const NationBuilderRequestToken;
-extern NSString * const NationBuilderRequestTokenSecret;
-extern NSString * const NationBuilderAccessToken;
-extern NSString * const NationBuilderAccessTokenSecret;
-extern NSString * const NationBuilderUIDKey;
-extern NSString * const NationBuilderReceivedNotification;
-
-extern NSString * const appFolder;
+extern NSString * const nationBuilderRequestToken;
+extern NSString * const nationBuilderAccessToken;
 
 typedef void (^NationBuilderRequestTokenCompletionHandler)(NSData *data, NSURLResponse *response, NSError *error);
 
@@ -27,14 +19,6 @@ typedef void (^NationBuilderRequestTokenCompletionHandler)(NSData *data, NSURLRe
 
 + (void)requestTokenWithCompletionHandler:(NationBuilderRequestTokenCompletionHandler)completionBlock;
 + (void)exchangeTokenForUserAccessTokenURLWithCompletionHandler:(NationBuilderRequestTokenCompletionHandler)completionBlock;
-+ (NSString*)apiAuthorizationHeader;
 
-// helpers
-+ (NSDictionary*)dictionaryFromOAuthResponseString:(NSString*)response;
-
-
-+ (NSURL*)appRootURL;
-+ (NSURL*)uploadURLForPath:(NSString*)path;
-+ (NSURL*)createPhotoUploadURL;
-
++(NSString *)constructNationBuilderAuthorizeUri;
 @end

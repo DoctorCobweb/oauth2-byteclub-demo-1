@@ -1,6 +1,5 @@
 
 #import "OAuthLoginViewController.h"
-#import "Dropbox.h"
 #import "NationBuilder.h"
 
 @interface OAuthLoginViewController ()
@@ -34,58 +33,44 @@
     
     // show alert view saying we are getting token
     _tokenAlert = [[UIAlertView alloc] initWithTitle:@"Getting token"
-                                                            message:@"Logging into Dropbox"
+                                                            message:@"Logging into Nation Builder"
                                                            delegate:nil
                                                   cancelButtonTitle:@"Cancel"
                                                   otherButtonTitles:nil];
     [_tokenAlert show];
 
-    // move on to step 2 of oauth token acquisation
     [self getOAuthRequestToken];
 }
 
-# pragma mark - OAUTH 1.0a STEP 1
+# pragma mark - OAUTH 2 STEP 1
 -(void)getOAuthRequestToken
 {
-    // OAUTH Step 1. Get request token.
+    // OAUTH Step 1. Get request token. need this to to access token later
     [NationBuilder requestTokenWithCompletionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (!error) {
+            
+            NSLog(@"in getOAuthRequestToken method");
+            NSLog(@"%@", response);
+            NSLog(@"%@", [response URL]);
             NSHTTPURLResponse *httpResp = (NSHTTPURLResponse*) response;
             if (httpResp.statusCode == 200) {
                 
-                //andre testing
-                //[[NSUserDefaults standardUserDefaults] setObject:@"HAH" forKey:dreTest];
-                //NSString *_test = [[NSUserDefaults standardUserDefaults] objectForKey:dreTest];
-                //NSLog(@"USER default test: %@", _test);
-                
-                NSString *responseStr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 
                 /*
                  oauth_token The request token that was just authorized. The request token secret isn't sent back.
                  If the user chooses not to authorize the application,
                  they will get redirected to the oauth_callback URL with the additional URL query parameter not_approved=true.
                  */
-                NSDictionary *oauthDict = [NationBuilder dictionaryFromOAuthResponseString:responseStr];
                 
-                for(NSString *t in oauthDict) {
-                    NSLog(@"oauthDict[%@] = %@", t, oauthDict[t]);
                 
-                }
-                // save the REQUEST token and secret to use for normal api calls
-                [[NSUserDefaults standardUserDefaults] setObject:oauthDict[NationBuilderOAuthTokenKey] forKey:NationBuilderRequestToken];
-                [[NSUserDefaults standardUserDefaults] setObject:oauthDict[NationBuilderOAuthTokenKeySecret] forKey:NationBuilderRequestTokenSecret];
-                [[NSUserDefaults standardUserDefaults] synchronize];
-               
-                
-                NSString *authorizationURLWithParams = [NSString stringWithFormat:@"https://www.dropbox.com/1/oauth/authorize?oauth_token=%@&oauth_callback=leadorganizerapp://userauthorization",oauthDict[NationBuilderOAuthTokenKey]];
-                
-                // escape codes
-                NSString *escapedURL = [authorizationURLWithParams stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-                                
                 [_tokenAlert dismissWithClickedButtonIndex:0 animated:NO];
                 
-                // opens to user auth page in safari
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escapedURL]];
+                //NSString * authorize_url = @"https://agtest.nationbuilder.com/oauth/authorize?response_type=code&client_id=ecc44472c84d126f006ccad6485f5dc127ae1400f0f937cf0167a60a12cfabc6&redirect_uri=https://cryptic-tundra-9564.herokuapp.com/oauth2callback";
+                
+                NSString * authorize_url = [NationBuilder constructNationBuilderAuthorizeUri];
+                
+                //opens to user auth page in safari
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:authorize_url]];
 
             } else {
                 // HANDLE BAD RESPONSE //

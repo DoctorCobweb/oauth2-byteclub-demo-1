@@ -23,10 +23,10 @@
             </objects>
             <point key="canvasLocation" x="-4432" y="-2468"/>
         </scene>
-        <!--Auth Login View Controller - Log In to ByteClub-->
+        <!--Auth Login View Controller - Log In to Nation Builder-->
         <scene sceneID="O4T-qE-irt">
             <objects>
-                <viewController storyboardIdentifier="Login" title="Log In to ByteClub" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lth-UZ-SsI" customClass="OAuthLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Login" title="Log In to Nation Builder" useStoryboardIdentifierAsRestorationIdentifier="YES" id="lth-UZ-SsI" customClass="OAuthLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sf1-wE-iEU"/>
                         <viewControllerLayoutGuide type="bottom" id="hG3-YO-9Nr"/>
@@ -51,13 +51,13 @@
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="310" translatesAutoresizingMaskIntoConstraints="NO" id="xGk-At-Rtx">
                                 <rect key="frame" x="5" y="96" width="310" height="126"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Dropbox requires you to authorize DropShare to use your account. Press the button below to be taken to Dropbox's authorization page.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.41960784313725491" green="0.79607843137254897" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Nation Builder requires you to authorize this app to use your Nation Builder account. Press the button below to be taken to Nation Builder's authorization page.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.41960784313725491" green="0.78489963503649629" blue="0.25098039215686274" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.97021923701659762" green="1" blue="0.96573377662410009" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </viewController>

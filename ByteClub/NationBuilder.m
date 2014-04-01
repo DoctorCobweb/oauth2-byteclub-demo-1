@@ -7,148 +7,118 @@
 //
 
 #import "NationBuilder.h"
+#import "AFNetworking.h"
 
-// INSERT YOUR OWN API KEY and SECRET HERE
-static NSString * NationBuilderApiKey = @"3y4rxw097ih12fo";
-static NSString * NationBuilderAppSecret = @"7z3gl93i7motvtr";
+// NATION BUILDER API KEY and SECRET HERE
+static NSString * nationBuilderClientID = @"ecc44472c84d126f006ccad6485f5dc127ae1400f0f937cf0167a60a12cfabc6";
+static NSString * nationBuilderClientSecret = @"5faca3b8f58b91696f07fc499b5674f6d12de149a0d6e9616aae42fba387701f";
+static NSString * nationBuilderRedirectUri= @"https://cryptic-tundra-9564.herokuapp.com/oauth2callback";
+static NSString * nationBuilderGrantType = @"authorization_code";
+static NSString * nationBuilderCode = @"code";
+static NSString * nationBuilderAuthorizeUri = @"https://agtest.nationbuilder.com/oauth/authorize";
+static NSString * nationBuilderTokenUri = @"https://agtest.nationbuilder.com/oauth/token";
 
-NSString * const appFolder = @"byteclub";
-
-// note: the values dont have nation builder prefix. mimicing
-// how dropbox responds
-NSString * const NationBuilderOAuthTokenKey = @"oauth_token";
-NSString * const NationBuilderOAuthTokenKeySecret = @"oauth_token_secret";
-NSString * const NationBuilderUIDKey = @"nation_builder_uid";
-NSString * const NationBuilderTokenReceivedNotification = @"nation_builder_have_user_request_token";
 
 #pragma mark - saved in NSUserDefaults
-NSString * const NationBuilderRequestToken = @"nation_builder_request_token";
-NSString * const NationBuilderRequestTokenSecret = @"nation_builder_request_token_secret";
-NSString * const NationBuilderAccessToken = @"nation_builder_access_token";
-NSString * const NationBuilderAccessTokenSecret = @"access_token_secret";
+NSString * const nationBuilderRequestToken = @"nation_builder_request_token";
+NSString * const nationBuilderAccessToken = @"nation_builder_access_token";
+
+
+
+
 
 @implementation NationBuilder
+
++(NSString *)constructNationBuilderAuthorizeUri
+{
+    return [NSString stringWithFormat:@"%@?response_type=code&client_id=%@&redirect_uri=%@", nationBuilderAuthorizeUri,nationBuilderClientID,nationBuilderRedirectUri];
+}
 
 
 +(void)requestTokenWithCompletionHandler:(NationBuilderRequestTokenCompletionHandler)completionBlock
 {
+    NSURLSessionConfiguration *sessionConfig =
+    [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSLog(@"%@", sessionConfig);
     
-    //TODO
-    // hard code the nation builder authorize url for now
-    //NSString * NationBuilderAuthUri = @"https://avg.nationbuilder.com/oauth/authorize?responseType=code&client_id=XXXXXXX&redirect_uri=YYYYYYYYY";
+    //hardcoded for now...
+    //NSString * authorize_url = @"https://agtest.nationbuilder.com/oauth/authorize?response_type=code&client_id=ecc44472c84d126f006ccad6485f5dc127ae1400f0f937cf0167a60a12cfabc6&redirect_uri=https://cryptic-tundra-9564.herokuapp.com/oauth2callback";
     
+    NSString * authorize_url = [self constructNationBuilderAuthorizeUri];
     
-    NSString *authorizationHeader = [self plainTextAuthorizationHeaderForAppKey:NationBuilderApiKey
-                                                                      appSecret:NationBuilderAppSecret
-                                                                          token:nil
-                                                                    tokenSecret:nil];
-    
-    NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [sessionConfig setHTTPAdditionalHeaders:@{@"Authorization": authorizationHeader}];
-   
-    //TODO
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.dropbox.com/1/oauth/request_token"]];
-    [request setHTTPMethod:@"POST"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:authorize_url]];
+    [request setHTTPMethod:@"GET"];
     
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
-    
     [[session dataTaskWithRequest:request completionHandler:completionBlock] resume];
+    
+    
+    /*
+    //2. HTML: now try to make a request without the 'request manager'. build the url, request and use
+    //   AFHTTPRequestOperation class.
+    NSString *url_string = @"https://agtest.nationbuilder.com/oauth/authorize";
+    AFHTTPRequestSerializer * req_ser = [AFHTTPRequestSerializer serializer];
+    NSError * the_error;
+    NSMutableDictionary * the_params =[NSMutableDictionary dictionary];
+    
+    [the_params setObject:@"code" forKey:@"response_type"];
+    [the_params setObject:@"ecc44472c84d126f006ccad6485f5dc127ae1400f0f937cf0167a60a12cfabc6" forKey:@"client_id"];
+    [the_params setObject:@"https://cryptic-tundra-9564.herokuapp.com/oauth2callback" forKey:@"redirect_uri"];
+    
+    NSMutableURLRequest * the_req = [req_ser requestWithMethod:@"GET" URLString: url_string parameters:the_params error:&the_error];
+    NSLog(@"%@", [the_req allHTTPHeaderFields]);
+    
+    
+    AFHTTPRequestOperation *op = [[AFHTTPRequestOperation alloc] initWithRequest:the_req];
+    
+    op.responseSerializer = [AFHTTPResponseSerializer serializer]; //this by default is nil
+    op.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
+    
+    NSLog(@"op.responseSerializer.acceptableContentTypes: %@", op.responseSerializer.acceptableContentTypes);
+    
+    //set the blocks or which are another name for callbacks
+    [op setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString *the_resp = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        NSLog(@"FROM WAY 2): TEXT/HTML successful request/response %@", the_resp);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"Error: %@", error);
+    }];
+    
+    // start the request/response cycle
+    [op start];
+     */
+    
+    
 }
 
 +(void)exchangeTokenForUserAccessTokenURLWithCompletionHandler:(NationBuilderRequestTokenCompletionHandler)completionBlock
 {
-    //TODO
-    NSString *urlString = [NSString stringWithFormat:@"https://api.dropbox.com/1/oauth/access_token?"];
-    NSURL *requestTokenURL = [NSURL URLWithString:urlString];
+    //NSString *urlString = [NSString stringWithFormat:nationBuilderTokenUri];
     
-    NSString *reqToken = [[NSUserDefaults standardUserDefaults] valueForKey:NationBuilderRequestToken];
-    NSString *reqTokenSecret = [[NSUserDefaults standardUserDefaults] valueForKey:NationBuilderRequestTokenSecret];
-    
-    NSString *authorizationHeader = [self plainTextAuthorizationHeaderForAppKey:NationBuilderApiKey
-                                                                      appSecret:NationBuilderAppSecret
-                                                                          token:reqToken
-                                                                    tokenSecret:reqTokenSecret];
+    NSURL *requestTokenURL = [NSURL URLWithString:nationBuilderTokenUri];
     
     NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
-    [sessionConfig setHTTPAdditionalHeaders:@{@"Authorization": authorizationHeader}];
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:requestTokenURL];
     [request setHTTPMethod:@"POST"];
     
+    NSString * code_val = [[NSUserDefaults standardUserDefaults] objectForKey:nationBuilderCode];
+    
+    //hard coding JSON!!!!!! for the body
+    NSString *body_string = [NSString stringWithFormat:@"{\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\",\"%@\":\"%@\"}",@"client_id",nationBuilderClientID, @"redirect_uri", nationBuilderRedirectUri, @"grant_type", nationBuilderGrantType, @"client_secret", nationBuilderClientSecret, @"code", code_val];
+    
+    NSLog(@"body_string of JSON: %@", body_string);
+    
+    NSData * body_data = [body_string dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:body_data];
+    
+    //you have to set these headers in order to get nation builder to accept your req
+    [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSLog(@"URL: %@", [request URL]);
     NSURLSession *session = [NSURLSession sessionWithConfiguration:sessionConfig];
     [[session dataTaskWithRequest:request completionHandler:completionBlock] resume];
 }
-
-+(NSString*)plainTextAuthorizationHeaderForAppKey:(NSString*)appKey appSecret:(NSString*)appSecret token:(NSString*)token tokenSecret:(NSString*)tokenSecret
-{
-    //TODO
-    // version, method, and oauth_consumer_key are always present
-    NSString *header = [NSString stringWithFormat:@"OAuth oauth_version=\"1.0\",oauth_signature_method=\"PLAINTEXT\",oauth_consumer_key=\"%@\"",NationBuilderApiKey];
-    
-    // look for oauth_token, include if one is passed in
-    if (token) {
-        header = [header stringByAppendingString:[NSString stringWithFormat:@",oauth_token=\"%@\"",token]];
-    }
-    
-    // add oauth_signature which is app_secret&token_secret , token_secret may not be there yet, just include @"" if it's not there
-    if (!tokenSecret) {
-        tokenSecret = @"";
-    }
-    header = [header stringByAppendingString:[NSString stringWithFormat:@",oauth_signature=\"%@&%@\"",NationBuilderAppSecret,tokenSecret]];
-    return header;
-}
-
-
-+(NSString*)apiAuthorizationHeader
-{
-    NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:NationBuilderAccessToken];
-    NSString *tokenSecret = [[NSUserDefaults standardUserDefaults] valueForKey:NationBuilderAccessTokenSecret];
-    return [self plainTextAuthorizationHeaderForAppKey:NationBuilderApiKey
-                                             appSecret:NationBuilderAppSecret
-                                                 token:token
-                                           tokenSecret:tokenSecret];
-}
-
-
-+(NSDictionary*)dictionaryFromOAuthResponseString:(NSString*)response
-{
-    NSArray *tokens = [response componentsSeparatedByString:@"&"];
-    NSMutableDictionary *oauthDict = [[NSMutableDictionary alloc] initWithCapacity:5];
-    
-    for(NSString *t in tokens) {
-        NSArray *entry = [t componentsSeparatedByString:@"="];
-        NSString *key = entry[0];
-        NSString *val = entry[1];
-        [oauthDict setValue:val forKey:key];
-    }
-    
-    return [NSDictionary dictionaryWithDictionary:oauthDict];
-}
-
-
-+ (NSURL*)appRootURL
-{
-    NSString *url = [NSString stringWithFormat:@"https://api.dropbox.com/1/metadata/dropbox/%@",appFolder];
-    NSLog(@"listing files using url %@", url);
-    return [NSURL URLWithString:url];
-}
-
-+ (NSURL*)uploadURLForPath:(NSString*)path
-{
-    NSString *urlWithParams = [NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/dropbox/%@/%@",
-                               appFolder,
-                               [path stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
-    NSURL *url = [NSURL URLWithString:urlWithParams];
-    return url;
-}
-
-+ (NSURL*)createPhotoUploadURL
-{
-    NSString *urlWithParams = [NSString stringWithFormat:@"https://api-content.dropbox.com/1/files_put/dropbox/%@/photos/byteclub_pano_%i.jpg",appFolder,arc4random() % 1000];
-    NSURL *url = [NSURL URLWithString:urlWithParams];
-    return url;
-}
-
 
 
 @end
