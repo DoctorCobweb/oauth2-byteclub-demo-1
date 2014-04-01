@@ -28,6 +28,7 @@
 		65E5160C18E996D200ACEB24 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E5160B18E996D200ACEB24 /* Security.framework */; };
 		65E5160E18E996DC00ACEB24 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E5160D18E996DC00ACEB24 /* MobileCoreServices.framework */; };
 		65E5161018E996E900ACEB24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E5160F18E996E900ACEB24 /* SystemConfiguration.framework */; };
+		65E5161418EADC4F00ACEB24 /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5161318EADC4F00ACEB24 /* PeopleViewController.m */; };
 		CB63AF6517A3446300DEBCD7 /* Dropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = CB63AF6417A3446300DEBCD7 /* Dropbox.m */; };
 		CB63AF6817A3452700DEBCD7 /* OAuthLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB63AF6717A3452700DEBCD7 /* OAuthLoginViewController.m */; };
 		CB6A0DA317A5D43400E226E7 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6A0DA217A5D43400E226E7 /* NotesViewController.m */; };
@@ -102,6 +103,8 @@
 		65E5160B18E996D200ACEB24 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		65E5160D18E996DC00ACEB24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		65E5160F18E996E900ACEB24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		65E5161218EADC4F00ACEB24 /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
+		65E5161318EADC4F00ACEB24 /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
 		CB63AF6317A3446300DEBCD7 /* Dropbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dropbox.h; sourceTree = "<group>"; };
 		CB63AF6417A3446300DEBCD7 /* Dropbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dropbox.m; sourceTree = "<group>"; };
 		CB63AF6617A3452700DEBCD7 /* OAuthLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthLoginViewController.h; sourceTree = "<group>"; };
@@ -212,6 +215,15 @@
 			path = "UIKit+AFNetworking";
 			sourceTree = "<group>";
 		};
+		65E5161118EADC1F00ACEB24 /* People */ = {
+			isa = PBXGroup;
+			children = (
+				65E5161218EADC4F00ACEB24 /* PeopleViewController.h */,
+				65E5161318EADC4F00ACEB24 /* PeopleViewController.m */,
+			);
+			name = People;
+			sourceTree = "<group>";
+		};
 		CB6A0DA017A5CFE700E226E7 /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +273,7 @@
 		CBC908A817A09FD8001A0777 /* ByteClub */ = {
 			isa = PBXGroup;
 			children = (
+				65E5161118EADC1F00ACEB24 /* People */,
 				65E515D418E995BF00ACEB24 /* AFNetworking */,
 				65E515E818E995BF00ACEB24 /* UIKit+AFNetworking */,
 				CB6A0DA017A5CFE700E226E7 /* OAuth */,
@@ -426,6 +439,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65E515FF18E995BF00ACEB24 /* AFURLConnectionOperation.m in Sources */,
+				65E5161418EADC4F00ACEB24 /* PeopleViewController.m in Sources */,
 				CB6A0DA317A5D43400E226E7 /* NotesViewController.m in Sources */,
 				65E515FE18E995BF00ACEB24 /* AFSecurityPolicy.m in Sources */,
 				CB9B278917A5D7B40050D202 /* NoteDetailsViewController.m in Sources */,
