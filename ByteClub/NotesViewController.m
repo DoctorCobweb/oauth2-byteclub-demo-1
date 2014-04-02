@@ -10,7 +10,6 @@
 #import "DBFile.h"
 #import "NoteDetailsViewController.h"
 #import "Dropbox.h"
-#import "AFNetworking.h"
 
 @interface NotesViewController ()<NoteDetailsViewControllerDelegate>
 
@@ -35,19 +34,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSString * token = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
-    
-    NSString * people_url = [NSString stringWithFormat:@"https://agtest.nationbuilder.com/api/v1/people?page=1&per_page=10&access_token=%@", token];
-    
-     
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    [manager GET:people_url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"NOTES VIEW CONTROLLER and response JSON: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"Error: %@", error);
-    }];
-    
-    
     [self notesOnDropbox];
 }
 

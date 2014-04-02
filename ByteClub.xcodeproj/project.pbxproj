@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65A987EF18EB90AF007E7299 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A987EE18EB90AF007E7299 /* Person.m */; };
+		65A987F218EB9D2E007E7299 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A987F118EB9D2E007E7299 /* PeopleTableViewController.m */; };
+		65A987F518EBAE10007E7299 /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A987F418EBAE10007E7299 /* PersonDetailViewController.m */; };
 		65E515D318E8336E00ACEB24 /* NationBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E515D218E8336E00ACEB24 /* NationBuilder.m */; };
 		65E515FA18E995BF00ACEB24 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E515D618E995BF00ACEB24 /* AFHTTPRequestOperation.m */; };
 		65E515FB18E995BF00ACEB24 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E515D818E995BF00ACEB24 /* AFHTTPRequestOperationManager.m */; };
@@ -62,6 +65,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		65A987ED18EB90AF007E7299 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		65A987EE18EB90AF007E7299 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		65A987F018EB9D2E007E7299 /* PeopleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleTableViewController.h; sourceTree = "<group>"; };
+		65A987F118EB9D2E007E7299 /* PeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleTableViewController.m; sourceTree = "<group>"; };
+		65A987F318EBAE10007E7299 /* PersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailViewController.h; sourceTree = "<group>"; };
+		65A987F418EBAE10007E7299 /* PersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailViewController.m; sourceTree = "<group>"; };
 		65E515D118E8336E00ACEB24 /* NationBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NationBuilder.h; sourceTree = "<group>"; };
 		65E515D218E8336E00ACEB24 /* NationBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NationBuilder.m; sourceTree = "<group>"; };
 		65E515D518E995BF00ACEB24 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -220,6 +229,12 @@
 			children = (
 				65E5161218EADC4F00ACEB24 /* PeopleViewController.h */,
 				65E5161318EADC4F00ACEB24 /* PeopleViewController.m */,
+				65A987ED18EB90AF007E7299 /* Person.h */,
+				65A987EE18EB90AF007E7299 /* Person.m */,
+				65A987F018EB9D2E007E7299 /* PeopleTableViewController.h */,
+				65A987F118EB9D2E007E7299 /* PeopleTableViewController.m */,
+				65A987F318EBAE10007E7299 /* PersonDetailViewController.h */,
+				65A987F418EBAE10007E7299 /* PersonDetailViewController.m */,
 			);
 			name = People;
 			sourceTree = "<group>";
@@ -438,6 +453,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65A987F218EB9D2E007E7299 /* PeopleTableViewController.m in Sources */,
 				65E515FF18E995BF00ACEB24 /* AFURLConnectionOperation.m in Sources */,
 				65E5161418EADC4F00ACEB24 /* PeopleViewController.m in Sources */,
 				CB6A0DA317A5D43400E226E7 /* NotesViewController.m in Sources */,
@@ -453,6 +469,7 @@
 				65E5160A18E995BF00ACEB24 /* UIWebView+AFNetworking.m in Sources */,
 				CBCBAF8E17A5E5550090674C /* DBFile.m in Sources */,
 				65E515D318E8336E00ACEB24 /* NationBuilder.m in Sources */,
+				65A987F518EBAE10007E7299 /* PersonDetailViewController.m in Sources */,
 				CBC908B317A09FD8001A0777 /* AppDelegate.m in Sources */,
 				CB6A0DA917A5D4F600E226E7 /* PhotoCell.m in Sources */,
 				65E5160218E995BF00ACEB24 /* AFURLSessionManager.m in Sources */,
@@ -460,6 +477,7 @@
 				CBC908AF17A09FD8001A0777 /* main.m in Sources */,
 				CB63AF6817A3452700DEBCD7 /* OAuthLoginViewController.m in Sources */,
 				65E5160018E995BF00ACEB24 /* AFURLRequestSerialization.m in Sources */,
+				65A987EF18EB90AF007E7299 /* Person.m in Sources */,
 				65E5160918E995BF00ACEB24 /* UIRefreshControl+AFNetworking.m in Sources */,
 				65E5160718E995BF00ACEB24 /* UIImageView+AFNetworking.m in Sources */,
 				65E515FD18E995BF00ACEB24 /* AFNetworkReachabilityManager.m in Sources */,

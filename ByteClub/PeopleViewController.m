@@ -39,7 +39,14 @@
     [manager GET:people_url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         //NSLog(@"NOTES VIEW CONTROLLER and response is an NSDictionary: %@", responseObject);
         
-        NSString * resp_str = [NSString stringWithFormat:@"%@", responseObject];
+        //responseObject is an NSDictionary with a "results" key with value of type
+        //NSSet.
+        //in this set then there are NSDictionary objects for each person
+        //the following will thus get all people returned from the api call
+        NSDictionary * person = [responseObject objectForKey:@"results"];
+        NSLog(@"%d people records returned", [person count]);
+        
+        NSString * resp_str = [NSString stringWithFormat:@"%@", [responseObject objectForKey:@"results"][0]];
         self.people.text = resp_str;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
