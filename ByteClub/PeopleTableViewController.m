@@ -37,23 +37,38 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     NSString * token = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
+    NSLog(@"access_token: %@", token);
     
     NSString * people_url = [NSString stringWithFormat:@"https://agtest.nationbuilder.com/api/v1/people?page=1&per_page=10&access_token=%@", token];
     
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    
+    
+    AFHTTPRequestSerializer *req_serializer = manager.requestSerializer;
+    
+    [req_serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [req_serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+ NSLog(@"AFHTTPRequestOperationManager.requestSerializer.HTTPRequestHeaders: %@", manager.requestSerializer.HTTPRequestHeaders);
+    
     NSLog(@"response serializer: %@", [manager responseSerializer]);
+    AFHTTPResponseSerializer *res_ser = [manager responseSerializer];
+    res_ser.acceptableContentTypes =[[NSSet alloc] initWithObjects:@"application/json", nil];
+    NSLog(@"acceptableContentTypes for response: %@",res_ser.acceptableContentTypes);
     [manager GET:people_url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSLog(@"NOTES VIEW CONTROLLER and response is an NSDictionary: %@", responseObject);
+        NSLog(@"NOTES VIEW CONTROLLER and response: %@", responseObject);
         
         //responseObject is an NSDictionary with a "results" key with value of type
         //NSSet.
         //in this set then there are NSDictionary objects for each person
         //the following will thus get all people returned from the api call
         NSSet * people_set = [responseObject objectForKey:@"results"];
+        //NSLog(@"people_set SET: %@", people_set);
         
         NSArray * tmp_people = [people_set allObjects];
+        //NSLog(@"tmp_keys: %@", tmp_keys);
         NSLog(@"%d people records returned", [tmp_people count]);
+        //NSLog(@"tmp_people ARRAY: %@", tmp_people);
         
         //alloc and init the people array
         people = [[NSMutableArray alloc] initWithCapacity:[tmp_people count]];
@@ -61,6 +76,10 @@
         int tmp_people_count = [tmp_people count];
         for (int i = 0; i < tmp_people_count; i++) {
             Person * tmp_person = [[Person alloc] init];
+            
+            NSLog(@"tmp_people[i] objectForKey:@\"email\": %@",[tmp_people[i] objectForKey:@"email"]);
+            NSLog(@"tmp_people[i] objectForKey:@\"mobile\": %@",[tmp_people[i] objectForKey:@"mobile"]);
+            
             tmp_person.firstName = [tmp_people[i] objectForKey:@"first_name"];
             tmp_person.lastName = [tmp_people[i] objectForKey:@"last_name"];
             tmp_person.email= [tmp_people[i] objectForKey:@"email"];
@@ -171,10 +190,8 @@
         
         PersonDetailViewController *destViewController = (PersonDetailViewController *) segue.destinationViewController;
         destViewController.person = [people objectAtIndex:indexPath.row];
-        //NSLog(@"%@", ((RecipeDetailViewController *)segue.destinationViewController).recipe);
+        //NSLog(@"%@", ((PersonDetailViewController *)segue.destinationViewController).person);
     }
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 
 

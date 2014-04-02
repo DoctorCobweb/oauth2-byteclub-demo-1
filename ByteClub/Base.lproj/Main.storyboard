@@ -227,20 +227,20 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="pA9-fT-p9d" kind="relationship" relationship="viewControllers" id="TyU-JG-z5x"/>
                         <segue destination="jCu-Ep-R6O" kind="relationship" relationship="viewControllers" id="KGo-li-Qu2"/>
                         <segue destination="33q-Au-5tf" kind="relationship" relationship="viewControllers" id="Utn-OG-5zP"/>
-                        <segue destination="pA9-fT-p9d" kind="relationship" relationship="viewControllers" id="TyU-JG-z5x"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lIV-f3-HY1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3913" y="-1950"/>
         </scene>
-        <!--Navigation Controller - People-->
+        <!--Navigation Controller-->
         <scene sceneID="GsK-oT-dE7">
             <objects>
                 <navigationController definesPresentationContext="YES" id="pA9-fT-p9d" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="People" image="117-todo" id="zgt-ni-6Xe"/>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="zgt-ni-6Xe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Pm8-Sb-HWi">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -394,6 +394,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="email" destination="mdX-SO-b84" id="Bm0-GY-YSF"/>
+                        <outlet property="firstName" destination="oO0-cv-Clq" id="zhX-nC-Yfw"/>
                         <outlet property="lastName" destination="B1S-GL-hen" id="Lz3-BL-VEy"/>
                         <outlet property="mobile" destination="iaR-4m-2AC" id="D5S-Cf-634"/>
                         <outlet property="note" destination="lqJ-0z-hwG" id="nRz-Vp-PjN"/>
@@ -535,7 +536,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="117-todo" width="18" height="19"/>
         <image name="40-inbox" width="24" height="24"/>
         <image name="42-photos" width="22" height="24"/>
     </resources>

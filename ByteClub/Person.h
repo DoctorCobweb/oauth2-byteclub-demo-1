@@ -16,6 +16,6 @@
 @property (nonatomic, strong) NSString * phone;
 @property (nonatomic, strong) NSString * mobile;
 @property (nonatomic, strong) NSString * note;
-@property (nonatomic, strong) NSString * supportLevel;
+@property (nonatomic, strong) NSNumber * supportLevel;
 
 @end
