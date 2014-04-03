@@ -22,9 +22,11 @@
 @property (weak, nonatomic) IBOutlet UITextView *note;
 @property (weak, nonatomic) IBOutlet UITextField *tags;
 
-- (IBAction)saveChanges:(id)sender;
-
 @property (nonatomic, strong) Person * person;
 
+- (IBAction)saveChanges:(id)sender;
+
+-(void)updateContactEndpoint;
+-(void)updatePersonEndpoint;
 
 @end

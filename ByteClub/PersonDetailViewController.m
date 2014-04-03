@@ -35,6 +35,7 @@
     NSLog(@"recordID: %@", self.person.recordID);
     
     NSString * contact_url = [NSString stringWithFormat:@"https://agtest.nationbuilder.com/api/v1/people/%@/contacts?page=1&per_page=10&access_token=%@", [self.person.recordID stringValue], token];
+    
     self.scrollView.contentSize =CGSizeMake(320, 800);
     
     
