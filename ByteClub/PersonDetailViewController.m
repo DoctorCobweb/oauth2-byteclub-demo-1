@@ -36,57 +36,14 @@
     self.scrollView.contentSize =CGSizeMake(320, 700);
     
     
-    //get the person object passed through from segue, then populate the info fields
-    if (self.person.firstName != [NSNull null]) {
-        self.firstName.text = self.person.firstName;
-    } else {
-        self.firstName.text = @"";
-    }
+    //get the person object passed through from segue
+    self.firstName.text = self.person.firstName;
+    self.lastName.text = self.person.lastName;
+    self.supportLevel.text = [self.person.supportLevel stringValue];
+    self.email.text = self.person.email;
+    self.phone.text = self.person.phone;
+    self.mobile.text = self.person.mobile;
     
-    if (self.person.lastName != [NSNull null]) {
-        self.lastName.text = self.person.lastName;
-    } else {
-        self.lastName.text = @"";
-    }
-    
-    
-    if (self.person.supportLevel != [NSNull null]) {
-        NSLog(@"self.person.supportLevel: %@", self.person.supportLevel);
-        //self.supportLevel.text = self.person.supportLevel;
-        self.supportLevel.text = [self.person.supportLevel stringValue];
-    } else {
-        self.supportLevel.text = @"0";
-    }
-    
-    
-    if (self.person.email != [NSNull null]) {
-        self.email.text = self.person.email;
-    } else {
-        self.email.text = @"";
-    }
-    
-    
-    if (self.person.phone != [NSNull null]) {
-        self.phone.text = self.person.phone;
-    } else {
-        self.phone.text = @"";
-    }
-    
-    
-    if (self.person.mobile != [NSNull null]) {
-        self.mobile.text = self.person.mobile;
-    } else {
-        self.mobile.text = @"";
-    }
-    
-    
-    /*
-    if (self.person.note != [NSNull null]) {
-        self.note.text = self.person.note;
-    } else {
-        self.note.text = @"";
-    }
-     */
     
     //need to get notes on the person from a different api, namely
     // the contacts api

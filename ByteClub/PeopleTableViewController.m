@@ -44,19 +44,8 @@
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
-    
-    AFHTTPRequestSerializer *req_serializer = manager.requestSerializer;
-    
-    [req_serializer setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [req_serializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
- NSLog(@"AFHTTPRequestOperationManager.requestSerializer.HTTPRequestHeaders: %@", manager.requestSerializer.HTTPRequestHeaders);
-    
-    NSLog(@"response serializer: %@", [manager responseSerializer]);
-    AFHTTPResponseSerializer *res_ser = [manager responseSerializer];
-    res_ser.acceptableContentTypes =[[NSSet alloc] initWithObjects:@"application/json", nil];
-    NSLog(@"acceptableContentTypes for response: %@",res_ser.acceptableContentTypes);
     [manager GET:people_url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"NOTES VIEW CONTROLLER and response: %@", responseObject);
+        //NSLog(@"PEOPLE TABLE VIEW CONTROLLER and response: %@", responseObject);
         
         //responseObject is an NSDictionary with a "results" key with value of type
         //NSSet.
@@ -65,34 +54,20 @@
         NSSet * people_set = [responseObject objectForKey:@"results"];
         //NSLog(@"people_set SET: %@", people_set);
         
-        NSArray * tmp_people = [people_set allObjects];
+        NSArray * people_array = [people_set allObjects];
         //NSLog(@"tmp_keys: %@", tmp_keys);
-        NSLog(@"%d people records returned", [tmp_people count]);
+        NSLog(@"%d people records returned", [people_array count]);
         //NSLog(@"tmp_people ARRAY: %@", tmp_people);
         
         //alloc and init the people array
-        people = [[NSMutableArray alloc] initWithCapacity:[tmp_people count]];
+        people = [[NSMutableArray alloc] initWithCapacity:[people_array count]];
         
-        int tmp_people_count = [tmp_people count];
-        for (int i = 0; i < tmp_people_count; i++) {
-            Person * tmp_person = [[Person alloc] init];
+        int people_array_count = [people_array count];
+        for (int i = 0; i < people_array_count; i++) {
             
-            NSLog(@"tmp_people[i] objectForKey:@\"email\": %@",[tmp_people[i] objectForKey:@"email"]);
-            NSLog(@"tmp_people[i] objectForKey:@\"mobile\": %@",[tmp_people[i] objectForKey:@"mobile"]);
-            
-            tmp_person.firstName = [tmp_people[i] objectForKey:@"first_name"];
-            tmp_person.lastName = [tmp_people[i] objectForKey:@"last_name"];
-            tmp_person.email= [tmp_people[i] objectForKey:@"email"];
-            tmp_person.phone= [tmp_people[i] objectForKey:@"phone"];
-            tmp_person.mobile= [tmp_people[i] objectForKey:@"mobile"];
-            tmp_person.note= [tmp_people[i] objectForKey:@"note"];
-            tmp_person.supportLevel = [tmp_people[i] objectForKey:@"support_level"];
-            
-            //NSLog(@"temp_person.firstName: %@", tmp_person.firstName);
-            [people addObject:tmp_person];
+            Person *demo_person = [self personFieldsForObject:people_array[i]];
+            [people addObject:demo_person];
         }
-        
-        //NSLog(@"OUTSIDE LOOP: people array size: %d", [people count]);
         
         [self.tableView reloadData];
         
@@ -102,6 +77,68 @@
     
     
 }
+
+-(Person *) personFieldsForObject:(NSDictionary *)person
+{
+
+    Person * tmp_person = [[Person alloc] init];
+   
+    //check to see if any of the entries are equal to the
+    //null singleton returned by [NSNull null]
+    //from inspection some fields in the console print out to
+    //"<null>" which is how [NSNull null] is printed out
+    if ([person objectForKey:@"first_name"] == [NSNull null]) {
+        tmp_person.firstName = nil;
+    } else {
+        tmp_person.firstName = [person objectForKey:@"first_name"];
+    }
+    
+    
+    if ([person objectForKey:@"last_name"] == [NSNull null]) {
+        tmp_person.lastName = nil;
+    } else {
+        tmp_person.lastName = [person objectForKey:@"last_name"];
+    }
+    
+    
+    if ([person objectForKey:@"email"] == [NSNull null]) {
+        tmp_person.email = nil;
+    } else {
+        tmp_person.email = [person objectForKey:@"email"];
+    }
+    
+    
+    if ([person objectForKey:@"phone"] == [NSNull null]) {
+        tmp_person.phone = nil;
+    } else {
+        tmp_person.phone = [person objectForKey:@"phone"];
+    }
+    
+    
+    if ([person objectForKey:@"mobile"] == [NSNull null]) {
+        tmp_person.mobile= nil;
+    } else {
+        tmp_person.mobile= [person objectForKey:@"mobile"];
+    }
+    
+    
+    if ([person objectForKey:@"note"] == [NSNull null]) {
+        tmp_person.note= nil;
+    } else {
+        tmp_person.note = [person objectForKey:@"note"];
+    }
+    
+    
+    if ([person objectForKey:@"support_level"] == [NSNull null]) {
+        tmp_person.supportLevel= nil;
+    } else {
+        tmp_person.supportLevel= [person objectForKey:@"support_level"];
+    }
+
+    
+    return tmp_person;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

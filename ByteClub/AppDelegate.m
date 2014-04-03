@@ -19,6 +19,10 @@
     
     // Override point for customization after application launch.
     NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
+    NSLog(@"nil: %@", nil);
+    NSLog(@"Nil: %@", Nil);
+    NSLog(@"[NSNULL nul]: %@", [NSNull null]);
+    
     
     
 #warning make sure you dont hardcode token = nil left here later
