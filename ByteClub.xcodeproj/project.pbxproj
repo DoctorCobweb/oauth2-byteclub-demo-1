@@ -10,6 +10,8 @@
 		65A987EF18EB90AF007E7299 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A987EE18EB90AF007E7299 /* Person.m */; };
 		65A987F218EB9D2E007E7299 /* PeopleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A987F118EB9D2E007E7299 /* PeopleTableViewController.m */; };
 		65A987F518EBAE10007E7299 /* PersonDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A987F418EBAE10007E7299 /* PersonDetailViewController.m */; };
+		65DD178718ED1BBF00E148C9 /* PeopleEditDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD178618ED1BBF00E148C9 /* PeopleEditDetailViewController.m */; };
+		65DD178A18ED3C2C00E148C9 /* PeopleNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65DD178918ED3C2C00E148C9 /* PeopleNavigationViewController.m */; };
 		65E515D318E8336E00ACEB24 /* NationBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E515D218E8336E00ACEB24 /* NationBuilder.m */; };
 		65E515FA18E995BF00ACEB24 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E515D618E995BF00ACEB24 /* AFHTTPRequestOperation.m */; };
 		65E515FB18E995BF00ACEB24 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E515D818E995BF00ACEB24 /* AFHTTPRequestOperationManager.m */; };
@@ -31,7 +33,6 @@
 		65E5160C18E996D200ACEB24 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E5160B18E996D200ACEB24 /* Security.framework */; };
 		65E5160E18E996DC00ACEB24 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E5160D18E996DC00ACEB24 /* MobileCoreServices.framework */; };
 		65E5161018E996E900ACEB24 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65E5160F18E996E900ACEB24 /* SystemConfiguration.framework */; };
-		65E5161418EADC4F00ACEB24 /* PeopleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E5161318EADC4F00ACEB24 /* PeopleViewController.m */; };
 		CB63AF6517A3446300DEBCD7 /* Dropbox.m in Sources */ = {isa = PBXBuildFile; fileRef = CB63AF6417A3446300DEBCD7 /* Dropbox.m */; };
 		CB63AF6817A3452700DEBCD7 /* OAuthLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB63AF6717A3452700DEBCD7 /* OAuthLoginViewController.m */; };
 		CB6A0DA317A5D43400E226E7 /* NotesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6A0DA217A5D43400E226E7 /* NotesViewController.m */; };
@@ -71,6 +72,10 @@
 		65A987F118EB9D2E007E7299 /* PeopleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleTableViewController.m; sourceTree = "<group>"; };
 		65A987F318EBAE10007E7299 /* PersonDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonDetailViewController.h; sourceTree = "<group>"; };
 		65A987F418EBAE10007E7299 /* PersonDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonDetailViewController.m; sourceTree = "<group>"; };
+		65DD178518ED1BBF00E148C9 /* PeopleEditDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleEditDetailViewController.h; sourceTree = "<group>"; };
+		65DD178618ED1BBF00E148C9 /* PeopleEditDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleEditDetailViewController.m; sourceTree = "<group>"; };
+		65DD178818ED3C2C00E148C9 /* PeopleNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleNavigationViewController.h; sourceTree = "<group>"; };
+		65DD178918ED3C2C00E148C9 /* PeopleNavigationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleNavigationViewController.m; sourceTree = "<group>"; };
 		65E515D118E8336E00ACEB24 /* NationBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NationBuilder.h; sourceTree = "<group>"; };
 		65E515D218E8336E00ACEB24 /* NationBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NationBuilder.m; sourceTree = "<group>"; };
 		65E515D518E995BF00ACEB24 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -112,8 +117,6 @@
 		65E5160B18E996D200ACEB24 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		65E5160D18E996DC00ACEB24 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		65E5160F18E996E900ACEB24 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		65E5161218EADC4F00ACEB24 /* PeopleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PeopleViewController.h; sourceTree = "<group>"; };
-		65E5161318EADC4F00ACEB24 /* PeopleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PeopleViewController.m; sourceTree = "<group>"; };
 		CB63AF6317A3446300DEBCD7 /* Dropbox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dropbox.h; sourceTree = "<group>"; };
 		CB63AF6417A3446300DEBCD7 /* Dropbox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dropbox.m; sourceTree = "<group>"; };
 		CB63AF6617A3452700DEBCD7 /* OAuthLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthLoginViewController.h; sourceTree = "<group>"; };
@@ -227,14 +230,16 @@
 		65E5161118EADC1F00ACEB24 /* People */ = {
 			isa = PBXGroup;
 			children = (
-				65E5161218EADC4F00ACEB24 /* PeopleViewController.h */,
-				65E5161318EADC4F00ACEB24 /* PeopleViewController.m */,
 				65A987ED18EB90AF007E7299 /* Person.h */,
 				65A987EE18EB90AF007E7299 /* Person.m */,
 				65A987F018EB9D2E007E7299 /* PeopleTableViewController.h */,
 				65A987F118EB9D2E007E7299 /* PeopleTableViewController.m */,
 				65A987F318EBAE10007E7299 /* PersonDetailViewController.h */,
 				65A987F418EBAE10007E7299 /* PersonDetailViewController.m */,
+				65DD178518ED1BBF00E148C9 /* PeopleEditDetailViewController.h */,
+				65DD178618ED1BBF00E148C9 /* PeopleEditDetailViewController.m */,
+				65DD178818ED3C2C00E148C9 /* PeopleNavigationViewController.h */,
+				65DD178918ED3C2C00E148C9 /* PeopleNavigationViewController.m */,
 			);
 			name = People;
 			sourceTree = "<group>";
@@ -455,7 +460,6 @@
 			files = (
 				65A987F218EB9D2E007E7299 /* PeopleTableViewController.m in Sources */,
 				65E515FF18E995BF00ACEB24 /* AFURLConnectionOperation.m in Sources */,
-				65E5161418EADC4F00ACEB24 /* PeopleViewController.m in Sources */,
 				CB6A0DA317A5D43400E226E7 /* NotesViewController.m in Sources */,
 				65E515FE18E995BF00ACEB24 /* AFSecurityPolicy.m in Sources */,
 				CB9B278917A5D7B40050D202 /* NoteDetailsViewController.m in Sources */,
@@ -469,6 +473,7 @@
 				65E5160A18E995BF00ACEB24 /* UIWebView+AFNetworking.m in Sources */,
 				CBCBAF8E17A5E5550090674C /* DBFile.m in Sources */,
 				65E515D318E8336E00ACEB24 /* NationBuilder.m in Sources */,
+				65DD178718ED1BBF00E148C9 /* PeopleEditDetailViewController.m in Sources */,
 				65A987F518EBAE10007E7299 /* PersonDetailViewController.m in Sources */,
 				CBC908B317A09FD8001A0777 /* AppDelegate.m in Sources */,
 				CB6A0DA917A5D4F600E226E7 /* PhotoCell.m in Sources */,
@@ -483,6 +488,7 @@
 				65E515FD18E995BF00ACEB24 /* AFNetworkReachabilityManager.m in Sources */,
 				CB63AF6517A3446300DEBCD7 /* Dropbox.m in Sources */,
 				65E515FA18E995BF00ACEB24 /* AFHTTPRequestOperation.m in Sources */,
+				65DD178A18ED3C2C00E148C9 /* PeopleNavigationViewController.m in Sources */,
 				65E515FC18E995BF00ACEB24 /* AFHTTPSessionManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

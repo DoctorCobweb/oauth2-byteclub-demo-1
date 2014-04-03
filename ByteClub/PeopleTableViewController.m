@@ -238,7 +238,7 @@
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showPersonDetails"]) {
+    if ([segue.identifier isEqualToString:@"showPersonsDetails"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         
         PersonDetailViewController *destViewController = (PersonDetailViewController *) segue.destinationViewController;

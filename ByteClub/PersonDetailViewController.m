@@ -8,6 +8,7 @@
 
 #import "PersonDetailViewController.h"
 #import "AFNetworking.h"
+#import "PeopleEditDetailViewController.h"
 
 @interface PersonDetailViewController ()
 
@@ -52,7 +53,6 @@
     int number_of_tags = [self.person.tags count];
     if (number_of_tags) {
         NSLog(@"person has >= 1  tags associated");
-        self.tags.text = @"TAGSSSSSS HERE";
         NSMutableString * tags_concatenated = [[NSMutableString alloc] init];
         for (int i = 0; i < number_of_tags; i++) {
             [tags_concatenated appendFormat:@" %@", self.person.tags[i]];
@@ -87,16 +87,20 @@
         NSLog(@"%d people records returned", [tmp_contacts count]);
         
         //check if there are non zero number of notes for person
-        if ([tmp_contacts count]) {
-             int tmp_contacts_count = [tmp_contacts count];
-             for (int i = 0; i < tmp_contacts_count; i++) {
+        int contacts_count = [tmp_contacts count];
+        if (contacts_count) {
+             for (int i = 0; i < contacts_count; i++) {
             
              NSLog(@"tmp_contacts[i] objectForKey:@\"note\": %@",[tmp_contacts[i] objectForKey:@"note"]);
             
              }
         
-#warning for now just use the latest note. later we will include all
-             self.note.text = [tmp_contacts[0] objectForKey:@"note"];
+             NSMutableString * contacts_concatenated = [[NSMutableString alloc] init];
+        for (int i = 0; i < contacts_count; i++) {
+            [contacts_concatenated appendFormat:@"<<< %@ >>>>\n\n",[tmp_contacts[i] objectForKey:@"note"]];
+        }
+            
+             self.note.text = contacts_concatenated;
         } 
         
         //alloc and init the people array
@@ -110,10 +114,42 @@
     
 }
 
+
+//call everytime a view appears
+- (void)viewDidAppear:(BOOL)animated
+{
+    NSLog(@"in viewDidAppear method of person detail view controller");
+    
+    // update the ui with new content
+    self.firstName.text = self.person.firstName;
+    self.lastName.text = self.person.lastName;
+    self.supportLevel.text = [self.person.supportLevel stringValue];
+    self.email.text = self.person.email;
+    self.phone.text = self.person.phone;
+    self.mobile.text = self.person.mobile;
+    
+
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+#pragma mark - Navigation
+
+// In a story board-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"editPersonsDetails"]) {
+        
+        PeopleEditDetailViewController *destViewController = (PeopleEditDetailViewController*) segue.destinationViewController;
+        
+        destViewController.person = self.person;
+    }
+}
+
 
 @end
