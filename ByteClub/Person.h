@@ -17,5 +17,8 @@
 @property (nonatomic, strong) NSString * mobile;
 @property (nonatomic, strong) NSString * note;
 @property (nonatomic, strong) NSNumber * supportLevel;
+@property (nonatomic, strong) NSArray  * tags;
 
+//this is the Nation Builder unique id for the person's record
+@property (nonatomic, strong) NSNumber * recordID;
 @end

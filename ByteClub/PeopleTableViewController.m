@@ -45,7 +45,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     [manager GET:people_url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //NSLog(@"PEOPLE TABLE VIEW CONTROLLER and response: %@", responseObject);
+        NSLog(@"PEOPLE TABLE VIEW CONTROLLER and response: %@", responseObject);
         
         //responseObject is an NSDictionary with a "results" key with value of type
         //NSSet.
@@ -69,6 +69,7 @@
             [people addObject:demo_person];
         }
         
+        //reload tableview to display new data returned from server
         [self.tableView reloadData];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
@@ -78,6 +79,8 @@
     
 }
 
+
+//get arbitrary fields from each person.
 -(Person *) personFieldsForObject:(NSDictionary *)person
 {
 
@@ -87,6 +90,15 @@
     //null singleton returned by [NSNull null]
     //from inspection some fields in the console print out to
     //"<null>" which is how [NSNull null] is printed out
+    
+    
+    if ([person objectForKey:@"id"] == [NSNull null]) {
+        tmp_person.recordID = nil;
+    } else {
+        tmp_person.recordID = [person objectForKey:@"id"];
+    }
+    
+    
     if ([person objectForKey:@"first_name"] == [NSNull null]) {
         tmp_person.firstName = nil;
     } else {
@@ -136,6 +148,12 @@
     }
 
     
+    if ([person objectForKey:@"tags"] == [NSNull null]) {
+        tmp_person.tags= nil;
+    } else {
+        tmp_person.tags = [person objectForKey:@"tags"];
+    }
+    
     return tmp_person;
 }
 
@@ -150,14 +168,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return [people count];
 }

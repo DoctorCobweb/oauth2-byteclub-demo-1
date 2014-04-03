@@ -284,7 +284,7 @@
             </objects>
             <point key="canvasLocation" x="-2707" y="-1086"/>
         </scene>
-        <!--Person Detail View Controller-->
+        <!--Person Detail View Controller - Person Details-->
         <scene sceneID="HaY-RT-HJ5">
             <objects>
                 <viewController id="abd-Zz-MXx" customClass="PersonDetailViewController" sceneMemberID="viewController">
@@ -293,7 +293,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="Eec-Gw-fQU">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BIH-s9-4hI">
@@ -382,13 +382,26 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tags" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Asz-mz-2FO">
+                                        <rect key="frame" x="20" y="644" width="280" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="17T-kT-Ve5">
+                                        <rect key="frame" x="17" y="666" width="280" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
                     </scrollView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="WDe-Bf-5Ok">
+                    <navigationItem key="navigationItem" title="Person Details" id="WDe-Bf-5Ok">
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="SZm-bo-zfM"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -401,6 +414,7 @@
                         <outlet property="phone" destination="s3I-it-3OO" id="deG-I6-uBg"/>
                         <outlet property="scrollView" destination="ms8-9R-kg6" id="8hZ-ZG-5yW"/>
                         <outlet property="supportLevel" destination="dg6-DQ-YLT" id="Uz3-42-XnE"/>
+                        <outlet property="tags" destination="17T-kT-Ve5" id="Cgh-9S-rpE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wib-wp-wJV" userLabel="First Responder" sceneMemberID="firstResponder"/>

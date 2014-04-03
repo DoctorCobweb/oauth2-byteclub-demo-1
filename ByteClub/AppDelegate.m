@@ -10,6 +10,7 @@
 #import "Dropbox.h"
 #import "OAuthLoginViewController.h"
 #import "NationBuilder.h"
+#import "AFNetworkActivityIndicatorManager.h"
 
 @implementation AppDelegate
 
@@ -17,18 +18,13 @@
 {
     [self initAppearance];
     
-    // Override point for customization after application launch.
+    //enable afnetworking to show spinner in top bar
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
     NSString *token = [[NSUserDefaults standardUserDefaults] valueForKey:@"access_token"];
-    NSLog(@"nil: %@", nil);
-    NSLog(@"Nil: %@", Nil);
-    NSLog(@"[NSNULL nul]: %@", [NSNull null]);
     
     
-    
-#warning make sure you dont hardcode token = nil left here later
     NSString *controllerId = token ? @"TabBar" : @"Login";
-    //NSString *controllerId = nil ? @"TabBar" : @"Login";
-    
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *initViewController = [storyboard instantiateViewControllerWithIdentifier:controllerId];
     

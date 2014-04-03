@@ -31,9 +31,10 @@
     
     NSString *token = [[NSUserDefaults standardUserDefaults] objectForKey:@"access_token"];
    
-    NSString *person_id = @"528";
-      NSString * contact_url = [NSString stringWithFormat:@"https://agtest.nationbuilder.com/api/v1/people/%@/contacts?page=1&per_page=10&access_token=%@", person_id, token];
-    self.scrollView.contentSize =CGSizeMake(320, 700);
+    NSLog(@"recordID: %@", self.person.recordID);
+    
+    NSString * contact_url = [NSString stringWithFormat:@"https://agtest.nationbuilder.com/api/v1/people/%@/contacts?page=1&per_page=10&access_token=%@", [self.person.recordID stringValue], token];
+    self.scrollView.contentSize =CGSizeMake(320, 800);
     
     
     //get the person object passed through from segue
@@ -44,6 +45,22 @@
     self.phone.text = self.person.phone;
     self.mobile.text = self.person.mobile;
     
+    //set to blank. making network call to get contents later on
+    self.note.text = nil;
+    
+    
+    int number_of_tags = [self.person.tags count];
+    if (number_of_tags) {
+        NSLog(@"person has >= 1  tags associated");
+        self.tags.text = @"TAGSSSSSS HERE";
+        NSMutableString * tags_concatenated = [[NSMutableString alloc] init];
+        for (int i = 0; i < number_of_tags; i++) {
+            [tags_concatenated appendFormat:@" %@", self.person.tags[i]];
+        }
+        self.tags.text = tags_concatenated;
+    } else {
+        self.tags.text = nil;
+    }
     
     //need to get notes on the person from a different api, namely
     // the contacts api
@@ -66,22 +83,25 @@
         NSSet * contacts_set = [responseObject objectForKey:@"results"];
         
         NSArray * tmp_contacts= [contacts_set allObjects];
-        //NSLog(@"tmp_keys: %@", tmp_keys);
+        
         NSLog(@"%d people records returned", [tmp_contacts count]);
-        //NSLog(@"tmp_people ARRAY: %@", tmp_people);
+        
+        //check if there are non zero number of notes for person
+        if ([tmp_contacts count]) {
+             int tmp_contacts_count = [tmp_contacts count];
+             for (int i = 0; i < tmp_contacts_count; i++) {
+            
+             NSLog(@"tmp_contacts[i] objectForKey:@\"note\": %@",[tmp_contacts[i] objectForKey:@"note"]);
+            
+             }
+        
+#warning for now just use the latest note. later we will include all
+             self.note.text = [tmp_contacts[0] objectForKey:@"note"];
+        } 
         
         //alloc and init the people array
         //contact_notes = [[NSMutableArray alloc] initWithCapacity:[tmp_contacts count]];
         
-        int tmp_contacts_count = [tmp_contacts count];
-        for (int i = 0; i < tmp_contacts_count; i++) {
-            
-            NSLog(@"tmp_contacts[i] objectForKey:@\"note\": %@",[tmp_contacts[i] objectForKey:@"note"]);
-            
-        }
-        
-        //for now just use the latest note. later we will include all
-        self.note.text = [tmp_contacts[0] objectForKey:@"note"];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
